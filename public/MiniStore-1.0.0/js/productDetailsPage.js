@@ -30,7 +30,7 @@ async function fetchProductDetails() {
   }
   document.getElementById('loader').style.display = 'flex';
   try {
-    const response = await fetch(`https://parallel-backend-production.up.railway.app/search?item_id=${productId}`);
+    const response = await fetch(`https://parallel-backend-production.up.railway.app/items/search?item_id=${productId}`);
     const data = await response.json();
 
     if (data.items && data.items.length > 0) {
