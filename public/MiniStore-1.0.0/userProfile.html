@@ -1,0 +1,538 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pofile Page</title>
+    <!-- Add Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Quicksand:300,400|Lato:400,300|Coda|Open+Sans);
+
+body {
+  background: #f8f5f0;
+  font-family: "Open sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #3498db;
+}
+
+.content-profile-page {
+  margin: 1em auto;
+  width: 100%;
+  max-width: 44.23em; 
+  padding: 0 1em;
+}
+
+.card {
+  background: #fff;
+  border-radius: 0.3rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  border: 0.1em solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 1em;
+  padding-bottom: 2em;
+}
+
+.profile-user-page .img-user-profile {
+  margin: 0 auto;
+  text-align: center;
+  position: relative; 
+}
+
+.profile-user-page .img-user-profile .profile-bgHome {
+  width: 100%;
+  height: 18em;
+  object-fit: cover; 
+}
+
+.profile-user-page .img-user-profile .avatar {
+  margin: 0 auto;
+  background: #fff;
+  width: 10em;
+  height: 10em;
+  padding: 0.25em;
+  border-radius: 50%;
+  margin-top: -3.5em; 
+  box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.35);
+}
+
+.profile-user-page .user-profile-data {
+  text-align: center;
+  padding: 0 1em;
+}
+
+.profile-user-page .user-profile-data h1 {
+  font-family: "Lato", sans-serif;
+  margin-top: 0.35em;
+  color: #292f33;
+  margin-bottom: 0;
+}
+
+.profile-user-page .user-profile-data p {
+  font-family: "Lato", sans-serif;
+  color: #8899a6;
+  font-size: 1.1em;
+  margin-top: 0.5em;
+}
+
+.profile-user-page .description-profile {
+  text-align: center;
+  color: #75787b;
+  font-size: 0.98em;
+  padding: 0 1em;
+  margin-top: 1em;
+}
+
+.profile-user-page .data-user {
+  font-family: "Quicksand", sans-serif;
+  margin-top: 1.5em; 
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; 
+}
+
+.profile-user-page .data-user li {
+  width: 33%;
+  text-align: center;
+  border-left: 0.1em solid transparent;
+}
+
+.profile-user-page .data-user li:first-child {
+  border-left: 0;
+}
+
+.profile-user-page .data-user li a {
+  background-color: #f7f7f7;
+  padding: 0.93em 0;
+  color: #46494c;
+  display: block;
+  border-top: 1px solid rgba(242, 242, 242, 0.5);
+  border-bottom: 0.2em solid #f7f7f7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.profile-user-page .data-user li a strong {
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.profile-user-page .data-user li a span {
+  color: #717a7e;
+}
+
+.profile-user-page .data-user li a:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-bottom: 0.2em solid #3498db;
+  color: #3498db;
+}
+
+footer h4 {
+  display: block;
+  text-align: center;
+  font-family: "Coda", sans-serif;
+  color: #566965;
+  line-height: 6;
+  font-size: 1em;
+}
+
+footer h4 a {
+  text-decoration: none;
+  color: #3498db;
+}
+
+.profile-user-page p {
+  margin: 0.5em 0; 
+  font-size: 0.9em; 
+  color: #46494c; 
+  
+}
+
+/* Specific styles for each <p> element for better control */
+#balance,
+#bankName,
+#subscriptionType,
+#cardType {
+  margin-top: 1em; /* Add top margin for separation */
+  font-weight: bold; /* Optional: Make text bold */
+  font-size: 1.2em; /* Adjust font size */
+}
+
+.account-items {
+  margin-top: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #f8f8f8, #e8ecf4);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.account-items h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.account-items h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #34495e;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-left: 5px solid #004ba0;
+  padding-left: 10px;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 270px);
+  gap: 25px;
+  padding-top: 20px;
+}
+
+.item-card {
+  background: #ffffff;
+  border-radius: 30px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+
+
+
+}
+
+.item-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.item-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.item-card:hover .item-image {
+  transform: scale(1.05);
+}
+
+.item-card h3 {
+  font-size: 1rem;
+  color: #333;
+  margin: 10px 0 8px;
+}
+
+.item-card p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.item-card p strong {
+  color: #222;
+}
+
+
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #778186;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.transactions-section {
+  margin-top: 40px;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.transactions-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.transactions-table {
+  overflow-x: auto;
+}
+
+.transactions-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.transactions-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.payment-logo {
+  height: 60px;  /* Changed from 30px to 24px */
+  width: auto;
+}
+
+.status-accepted {
+  background-color: #e6f4ea;
+  color: #1e7e34;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.9em;
+}
+
+.details-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 15px;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: background-color 0.3s;
+}
+
+.details-btn:hover {
+  background-color: #0056b3;
+}
+
+.nav-buttons {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.home-btn {
+  padding: 12px 25px;
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.home-btn:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: #000;
+  border-radius: 50%;
+  color: white;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border: none;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.scroll-to-top:hover {
+  background: #333;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-to-top i {
+  font-size: 24px;
+  transform: translateY(-2px); /* Slight adjustment to center the arrow */
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.scroll-to-top:hover i {
+  animation: bounce 1s infinite;
+}
+    </style>
+  </head>
+  <body>
+    <div class="nav-buttons">
+      <a href="index.html" class="home-btn">
+        <i class="fas fa-home"></i> Home
+      </a>
+    </div>
+
+    <div id="loader" class="loader-overlay">
+      <div class="spinner"></div>
+    </div>
+
+
+
+
+
+    <div class="cotnent-profile-page">
+      <div class="profile-user-page card">
+        <div class="img-user-profile">
+          <img
+            class="profile-bgHome"
+            src="images/cover.jpg"
+          />
+          <img
+            class="avatar"
+            id="profilePic"
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            alt=""
+          />
+        </div>
+        <div class="user-profile-data">
+          <h1 id="name"></h1>
+          <p></p>
+        </div>
+        <div class="description-profile"><p id="description">-</p></div>
+        <ul class="data-user">
+          <li>
+            <a><strong id="items_number">-</strong></a>
+          </li>
+          <li>
+            <a><strong id="avgDays">-</strong></a>
+          </li>
+          <li>
+            <a><strong id="country">-</strong></a>
+          </li>
+        </ul>
+
+        <ul class="data-user">
+            <li>
+                <p id="balance"></p>
+            </li>
+            <li>
+                <p id="bankName"></p>
+            </li>
+            <li>
+                <p id="cardType"></p>
+            </li>
+            <li>
+                <p id="subscriptionType"></p>
+            </li>
+            <li>
+              <p ></p>
+          </li>
+          </ul>
+
+          <div class="account-items" id="accountItems">
+
+            <h1>Your Items</h1>
+            <div class="items-grid" id="itemsGrid"></div>
+
+
+            <h2>To be Sold</h2>
+          <div id="TobeSold" class="items-grid"></div>
+          
+          <h2>Sold</h2>
+          <div id="Sold" class="items-grid"></div>
+          
+          <h2>Purschased</h2>
+          <div id="Purschased" class="items-grid"></div>
+          </div>
+
+          <!-- New Transaction Section -->
+          <div class="transactions-section">
+            
+            <div class="transactions-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Transaction ID</th>
+                    <th>Payment Method</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#TRX-789456</td>
+                    <td>
+                        <img src="images/visa.svg" alt="Visa" class="payment-logo">
+                    </td>
+                    <td>$299.99</td>
+                    <td><span class="status-accepted">Accepted</span></td>
+                    <td>2024-03-20</td>
+                    <td>Invoice</td>
+                    <td><a href="transaction-details.html?id=TRX-789456" class="details-btn">Details</a></td>
+                  </tr>
+                  <!-- Add more dummy transactions here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="scroll-to-top" id="scrollTopBtn">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <footer></footer>
+    <script src="../userProfileScript.js"></script>
+    <script src = "js/userProfile.js"> </script>
+      
+  </body>
+</html>

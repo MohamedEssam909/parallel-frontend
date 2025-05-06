@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Thunder Store - Cart</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!-- Project CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <meta charset="UTF-8">
+
+    <!-- Ensure the header styles are included -->
+    <link rel="stylesheet" type="text/css" href="styles/header.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Cart specific styles -->
+    <link rel="stylesheet" href="styles/cart/cart.css">
+  </head>
+  <body>
+    <div id="loader" class="loader-overlay">
+      <div class="spinner"></div>
+    </div>
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <a href="index.html"><img src="../../images/logo.JPG" alt="Thunder Store" width="170px"></a>
+        </div>
+        <nav>
+          <ul id="MenuItems">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shoppingPage.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="userProfile.html">Profile</a></li>
+          </ul>
+        </nav>
+        <div class="balance-container" style="margin-left: 30px; margin-right: 20px; font-weight: bold;">
+          Your Balance: <span class="js-user-balance">$0.00</span>
+        </div>
+        <a href="cart.html"><img src="../../images/cart.png" width="30px" height="30px"></a>
+        <img src="../../images/menu.png" class="menu-icon" onclick="menutoggle()">
+      </div>
+    </div>
+
+    <main class="cart-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card shadow-sm mb-4">
+              <div class="card-body">
+                <h2 class="page-title" style="font-size: 1.6rem; font-weight: 600; color: #2c3e50; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid #f1f2f6;">Your Bag</h2>
+                <div class="cart-container js-cart-container">
+                  <!-- Cart items will be dynamically generated here -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="payment-summary">
+              <h3 class="payment-summary-title">Order Summary</h3>
+              
+              <div class="payment-row">
+                <div>Items (<span class="js-total-items">0</span>):</div>
+                <div class="js-items-total">$0.00</div>
+              </div>
+
+              <div class="payment-row">
+                <div>Shipping:</div>
+                <div class="js-shipping">$0.00</div>
+              </div>
+
+              <div class="payment-row">
+                <div>Subtotal:</div>
+                <div class="js-subtotal">$0.00</div>
+              </div>
+
+              <div class="tax-details">
+                <div class="js-tax">
+                  <!-- Tax details will be generated here -->
+                </div>
+                <div class="total-tax"></div>
+              </div>
+
+              <div class="payment-row total-row">
+                <div>Order total:</div>
+                <div class="js-order-total">$0.00</div>
+              </div>
+
+              <button class="place-order-button" id="placeOrderButton" disabled>
+                Place your order
+              </button>
+              <div id="loadingBar" style="display: none; text-align: center; margin-top: 10px;">
+                <h6>Processing your order...</h6>
+                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/plugins.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="module" src="js/cart.js"></script>
+    
+  </body>
+</html>

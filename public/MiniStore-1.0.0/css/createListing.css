@@ -1,0 +1,4 @@
+/* Hide audio element */
+#successSound {
+    display: none;
+}

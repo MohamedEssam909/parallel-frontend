@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | Thunder Store</title>
+  <link rel="stylesheet" href="shoppingPageStyle.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="loader" class="loader-overlay">
+    <div class="spinner"></div>
+  </div>
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html"><img src="../../images/logo.JPG" alt="Thunder Store" width="170px"></a>
+      </div>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shoppingPage.html">Products</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="">Contact</a></li>
+          <li><a href="userProfile.html">Profile</a></li>
+        </ul>
+      </nav>
+      <a href="cart.html"><img src="../../images/cart.png" width="30px" height="30px"></a>
+      <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+    </div>
+  </div>
+
+  <!-- Single Product -->
+  <div class="small-container single-product">
+    <div class="row">
+      <div class="col-2">
+        <img src="" width="100%" id="ProductImg" >
+      </div>
+      <div class="col-2" id="productDetails">
+        <!-- Product details will be populated here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  <div class="small-container">
+    <div class="row row-2">
+      <h2>Related Products</h2>
+      
+    </div>
+    <div class="row" id="related-products">
+      <!-- Related products will be populated here -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-bottom">
+    <div class="container">
+      <div class="row d-flex flex-wrap justify-content-between">
+        <div class="col-md-4 col-sm-6">
+          <div class="Shipping d-flex">
+            <p>We ship with:</p>
+            <div class="card-wrap ps-2">
+              <img src="images/dhl.png" alt="visa">
+              <img src="images/shippingcard.png" alt="mastercard">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="payment-method d-flex">
+            <p>Payment options:</p>
+            <div class="card-wrap ps-2">
+              <img src="images/visa.jpg" alt="visa">
+              <img src="images/mastercard.jpg" alt="mastercard">
+              <img src="images/paypal.jpg" alt="paypal">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="copyright">
+            <p>© Copyright 2025 ThunderStore.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src = "js/productDetailsPage.js" > </script>
+</body>
+</html>

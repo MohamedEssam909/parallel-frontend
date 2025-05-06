@@ -1,0 +1,541 @@
+.main {
+  max-width: 1100px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  margin-top: 140px;
+  margin-bottom: 100px;
+
+  /* margin-left: auto;
+     margin-right auto;
+     Is a trick for centering an element horizontally
+     without needing a container. */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  color: var(--dark-color);
+  text-decoration: none;
+  transition: 0.3s color ease-out;
+}
+a.light {
+  color: var(--light-color);
+}
+a:hover {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+h1.display-2.text-uppercase.text-dark.pb-5 {
+  padding-top: 100px;
+  padding-left: 100px;
+}
+
+.page-title {
+  font-weight: 600;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.checkout-grid {
+  display: grid;
+  /* Here, 1fr means the first column will take
+     up the remaining space in the grid. */
+  grid-template-columns: 1fr 350px;
+  column-gap: 12px;
+
+  /* Use align-items: start; to prevent the elements
+     in the grid from stretching vertically. */
+  align-items: start;
+}
+
+@media (max-width: 1000px) {
+  .main {
+    max-width: 500px;
+  }
+
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cart-item-container,
+.payment-summary {
+  border: 1px solid rgb(222, 222, 222);
+  border-radius: 4px;
+  padding: 18px;
+}
+
+.cart-item-container {
+  margin-bottom: 12px;
+}
+
+.payment-summary {
+  padding-bottom: 5px;
+  position: sticky;
+  top: 100px; /* Keep some distance from the header */
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  padding: 25px;
+}
+
+@media (max-width: 1000px) {
+  .payment-summary {
+    /* grid-row: 1 means this element will be placed into row
+      1 in the grid. (Normally, the row that an element is
+      placed in is determined by the order of the elements in
+      the HTML. grid-row overrides this default ordering). */
+    grid-row: 1;
+    margin-bottom: 12px;
+  }
+}
+
+.delivery-date {
+  color: rgb(0, 118, 0);
+  font-weight: 700;
+  font-size: 19px;
+  margin-top: 5px;
+  margin-bottom: 22px;
+}
+
+.cart-item-details-grid {
+  display: grid;
+  /* 100px 1fr 1fr; means the 2nd and 3rd column will
+     take up half the remaining space in the grid
+     (they will divide up the remaining space evenly). */
+  grid-template-columns: 100px 1fr 1fr;
+  column-gap: 25px;
+}
+
+@media (max-width: 1000px) {
+  .cart-item-details-grid {
+    grid-template-columns: 100px 1fr;
+    row-gap: 30px;
+  }
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 120px;
+
+  /* margin-left: auto;
+     margin-right auto;
+     Is a trick for centering an element horizontally
+     without needing a container. */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-name {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.product-price {
+  color: rgb(177, 39, 4);
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.product-quantity .link-primary {
+  margin-left: 3px;
+}
+
+@media (max-width: 1000px) {
+  .delivery-options {
+    /* grid-column: 1 means this element will be placed
+       in column 1 in the grid. (Normally, the column that
+       an element is placed in is determined by the order
+       of the elements in the HTML. grid-column overrides
+       this default ordering).
+       
+       / span 2 means this element will take up 2 columns
+       in the grid (Normally, each element takes up 1
+       column in the grid). */
+    grid-column: 1 / span 2;
+  }
+}
+
+.delivery-options-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.delivery-option {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.delivery-option-input {
+  margin-left: 0px;
+  cursor: pointer;
+}
+
+.delivery-option-date {
+  color: rgb(0, 118, 0);
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.delivery-option-price {
+  color: rgb(120, 120, 120);
+  font-size: 15px;
+}
+
+.payment-summary-title {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.payment-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: #666;
+}
+
+.payment-summary-money {
+  text-align: right;
+}
+
+.subtotal-row {
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+  margin-top: 12px;
+}
+
+.subtotal-row .payment-summary-money {
+  border-top: 1px solid rgb(222, 222, 222);
+}
+
+.subtotal-row div {
+  padding-top: 9px;
+}
+
+.total-row {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.place-order-button {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: none;
+  margin-bottom: 15px;
+}
+
+/* Update cart section positioning */
+.cart-section {
+  padding-top: 100px;
+  padding-bottom: 60px;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+}
+
+/* Remove the padding-large class since we're handling spacing in cart-section */
+.padding-large {
+  padding-top: 0;
+  padding-bottom: 60px;
+}
+
+/* Ensure header stays on top */
+.site-header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+/* Header Styles */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 0.5rem 0;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbar-brand h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  font-family: 'Jost', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Remove the old logo styles */
+.header-logo {
+  display: none;
+}
+
+.navbar-nav {
+  margin: 0 2rem;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem 1rem !important;
+  font-weight: 500;
+  color: #666;
+}
+
+.nav-link.active {
+  color: #000;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background-color: #000;
+}
+
+.nav-right {
+  gap: 1.5rem;
+}
+
+.nav-right .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 71px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .nav-right {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+}
+
+.navbar {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-nav {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: #333;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #7EAFC2;
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.75rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/* Ensure content visibility */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.order-summary {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Fix responsive issues */
+@media (max-width: 991px) {
+  .cart-section {
+    padding-top: 100px;
+  }
+  
+  .payment-summary {
+    position: relative;
+    top: 0;
+    margin-top: 30px;
+  }
+  
+  .navbar-collapse {
+    background: #fff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+}
+
+/* Update navbar styles */
+.navbar-nav {
+  margin-left: 0;
+  gap: 1rem;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem !important;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #333;
+}
+
+.nav-link.active {
+  color: #000;
+  position: relative;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background-color: #000;
+}
+
+@media (max-width: 991px) {
+  .navbar-nav {
+    gap: 0;
+  }
+  
+  .nav-link {
+    padding: 0.75rem 1rem !important;
+  }
+  
+  .nav-link.active::after {
+    display: none;
+  }
+}
+
+/* Header Styles */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 0.5rem 0;
+}
+
+.navbar-brand {
+  text-decoration: none;
+}
+
+.navbar-brand h1 {
+  font-size: 2em;
+  font-weight: 500;
+  font-family: var(--heading-font);
+  color: var(--dark-color);
+  margin: 0;
+}
+
+.navbar-nav {
+  gap: 1rem;
+}
+
+.nav-link {
+  font-size: 1.1em;
+  font-weight: 400;
+  font-family: var(--heading-font);
+  color: var(--accent-color) !important;
+  padding: 0.5rem 0 !important;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary-color) !important;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: #fff;
+    position: fixed;
+    top: 71px;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .nav-link {
+    padding: 0.75rem 0 !important;
+  }
+}
+
+/* Add payment logo styles */
+.card-wrap img {
+  height: 30px;
+  width: auto;
+  margin-right: 10px;
+}

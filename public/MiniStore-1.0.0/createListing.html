@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Listing | Thunder Store</title>
+    <link rel="stylesheet" href="shoppingPageStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        .create-listing-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input, 
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(86, 52, 52, 0.1);
+            outline: none;
+        }
+
+        .form-group.error input,
+        .form-group.error select {
+            border-color: #ff4d4d;
+            background-color: rgba(255, 77, 77, 0.05);
+            animation: shake 0.4s ease-in-out;
+        }
+
+        .form-group.error label {
+            color: #ff4d4d;
+        }
+
+        .form-group .error-message {
+            color: #ff4d4d;
+            font-size: 0.8em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        .price-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .price-group .form-group {
+            flex: 1;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .preview-image {
+            max-width: 200px;
+            margin-top: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        /* Add new tax display styles */
+        .tax-estimate-container {
+            margin-top: 12px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(46, 204, 113, 0.05);
+            border: 1px solid rgba(46, 204, 113, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tax-estimate-container.active {
+            border-color: rgba(46, 204, 113, 0.3);
+            box-shadow: 0 2px 8px rgba(46, 204, 113, 0.1);
+        }
+
+        .tax-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-size: 0.9em;
+        }
+
+        .tax-row.total {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(46, 204, 113, 0.2);
+            font-weight: 600;
+            color: #2ecc71;
+        }
+
+        .tax-label {
+            color: #7f8c8d;
+        }
+
+        .tax-value {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #1a1a1a;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(120%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            min-width: 300px;
+            max-width: 400px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .notification-list {
+            margin: 8px 0 0 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .notification-list li {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4px 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            backdrop-filter: blur(8px);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            25% { transform: translate(-52%, -50%) scale(1); }
+            75% { transform: translate(-48%, -50%) scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(120%); }
+            to { transform: translateX(0); }
+        }
+
+        .notification.show-shake {
+            animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Add this right after the body tag -->
+    <audio id="successSound" src="sounds/success-sound.mp3" preload="auto"></audio>
+
+    <!-- Navbar -->
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="../../images/logo.JPG" alt="Thunder Store" width="170px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shoppingPage.html">Products</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="userProfile.html">Profile</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="../../images/cart.png" width="30px" height="30px"></a>
+            <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+        </div>
+    </div>
+
+    <!-- Create Listing Form -->
+    <div class="create-listing-container">
+        <h1 class="page-title">Create New Listing</h1>
+        <form id="createListingForm">
+            <div class="form-group">
+                <label for="itemName">Item Name</label>
+                <input type="text" id="itemName" name="itemName" required placeholder="Enter item name">
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input type="url" id="imageUrl" name="imageUrl" required placeholder="Enter image URL">
+                <img id="previewImage" class="preview-image" alt="Preview">
+            </div>
+            <div class="price-group">
+                <div class="form-group">
+                    <label for="price">Price ($)</label>
+                    <input type="number" class="form-control" id="price" name="price" step="0.01" required 
+                           onInput="calculateTax(this.value)" placeholder="Enter price"
+                           min="0" max="500000"
+                           oninput="this.value = this.value > 500000 ? 500000 : Math.max(0, this.value)">
+                    <div id="taxEstimate" class="tax-estimate-container" style="display: none;"></div>
+                </div>
+                <div class="form-group">
+                    <label for="discount">Discount (%)</label>
+                    <input type="number" id="discount" name="discount" min="0" max="100" value="0" 
+                           placeholder="Enter discount" 
+                           oninput="this.value = this.value > 100 ? 100 : Math.max(0, this.value)">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="stockQuantity">Stock Quantity</label>
+                <input type="number" id="stockQuantity" name="stockQuantity" required min="0" placeholder="Enter stock quantity">
+            </div>
+            <div class="form-group">
+                <label for="warranty">Warranty Period (months)</label>
+                <select id="warranty" name="warranty" class="form-control" required>
+                    <option value="0">No Warranty</option>
+                    <option value="6">6 Months</option>
+                    <option value="12">12 Months</option>
+                    <option value="24">24 Months</option>
+                    <option value="36">36 Months</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="">Select a category</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Create Listing</button>
+        </form>
+    </div>
+
+    <script>
+        // Menu toggle functionality
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+
+        // Image preview functionality
+        document.getElementById('imageUrl').addEventListener('input', function(e) {
+            const previewImage = document.getElementById('previewImage');
+            const imageUrl = e.target.value;
+            if (imageUrl) {
+                previewImage.style.display = 'block';
+                previewImage.src = imageUrl;
+            } else {
+                previewImage.style.display = 'none';
+            }
+        });
+
+        // Populate categories - Replace hardcoded array with dynamic fetch
+        async function loadCategories() {
+            try {
+                const response = await fetch('http://localhost:3000/categories/list');
+                const categories = await response.json();
+                const categorySelect = document.getElementById('category');
+                categorySelect.innerHTML = '<option value="">Select a category</option>' +
+                    categories.map(cat => `<option value="${cat.sub_cat_name}">${cat.sub_cat_name}</option>`).join('');
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        // Call loadCategories when page loads
+        document.addEventListener('DOMContentLoaded', loadCategories);
+
+        // Form submission handler
+        document.getElementById('createListingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const requiredFields = {
+                'itemName': 'Item Name',
+                'imageUrl': 'Image URL',
+                'price': 'Price',
+                'stockQuantity': 'Stock Quantity',
+                'category': 'Category'
+            };
+
+            // Reset all fields' styles first
+            Object.entries(requiredFields).forEach(([id]) => {
+                const field = document.getElementById(id);
+                const formGroup = field.closest('.form-group');
+                formGroup.classList.remove('error');
+                const errorMessage = formGroup.querySelector('.error-message');
+                if (errorMessage) errorMessage.remove();
+            });
+
+            // Validate item name first
+            const itemNameField = document.getElementById('itemName');
+            const itemNameValue = itemNameField.value.trim();
+            const formGroup = itemNameField.closest('.form-group');
+            
+            // Check if item name contains only numbers
+            if (/^\d+$/.test(itemNameValue)) {
+                formGroup.classList.add('error');
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'error-message';
+                errorMessage.textContent = 'Item name cannot contain only numbers';
+                formGroup.appendChild(errorMessage);
+
+                // Create notification
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.innerHTML = `
+                    <svg class="notification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    <div class="notification-content">
+                        <div class="notification-title">Invalid Item Name</div>
+                        <ul class="notification-list">
+                            <li>Item name cannot contain only numbers</li>
+                        </ul>
+                    </div>
+                `;
+
+                // Remove existing notification
+                const existingNotification = document.querySelector('.notification');
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+
+                document.body.appendChild(notification);
+                requestAnimationFrame(() => {
+                    notification.classList.add('show');
+                    notification.classList.add('show-shake');
+                });
+
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }, 5000);
+
+                // Prevent form submission
+                e.preventDefault();
+                return false;
+            }
+
+            // Continue with remaining validation
+            let hasErrors = false;
+            const emptyFields = [];
+            Object.entries(requiredFields).forEach(([id, label]) => {
+                const field = document.getElementById(id);
+                const value = field.value.trim();
+                const formGroup = field.closest('.form-group');
+                if (!value) {
+                    hasErrors = true;
+                    emptyFields.push(label);
+                    // Add error class to parent form-group
+                    formGroup.classList.add('error');
+                    // Add error message
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'error-message';
+                    errorMessage.textContent = `${label} is required`;
+                    formGroup.appendChild(errorMessage);
+                }
+            });
+
+            if (hasErrors) {
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.innerHTML = `
+                    <svg class="notification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    <div class="notification-content">
+                        <div class="notification-title">Please complete all required fields</div>
+                        <ul class="notification-list">
+                            ${emptyFields.map(field => `<li>${field}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+
+                // Remove existing notification if any
+                const existingNotification = document.querySelector('.notification');
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.classList.add('show');
+                    notification.classList.add('show-shake');
+                }, 10);
+
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }, 5000);
+                return;
+            }
+
+            // If validation passes, proceed with submission
+            if (!hasErrors) {
+                const sellerId = localStorage.getItem('user_id'); // Get user_id from localStorage
+                if (!sellerId) {
+                    alert('Please log in to create a listing');
+                    return;
+                }
+
+                try {
+                    const formData = {
+                        itemName: document.getElementById('itemName').value.trim(),
+                        imageUrl: document.getElementById('imageUrl').value.trim(),
+                        price: parseFloat(document.getElementById('price').value),
+                        discount: parseFloat(document.getElementById('discount').value) || 0,
+                        stockQuantity: parseInt(document.getElementById('stockQuantity').value),
+                        warranty: parseInt(document.getElementById('warranty').value) || 0,
+                        category: document.getElementById('category').value,
+                        taxRate: calculateTotalTaxRate(parseFloat(document.getElementById('price').value)),
+                        sellerId: sellerId
+                    };
+
+                    const response = await fetch('http://localhost:3000/items/create', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        // Play success sound
+                        const sound = document.getElementById('successSound');
+                        sound.volume = 0.5; // Set volume to 50%
+                        sound.play();
+
+                        // Reset all form elements immediately
+                        e.target.reset();
+                        
+                        // Reset preview image
+                        const previewImage = document.getElementById('previewImage');
+                        previewImage.src = '';
+                        previewImage.style.display = 'none';
+                        
+                        // Reset tax estimate
+                        const taxContainer = document.getElementById('taxEstimate');
+                        taxContainer.style.display = 'none';
+                        taxContainer.innerHTML = '';
+                        taxContainer.classList.remove('active');
+
+                        // Show success notification
+                        const notification = document.createElement('div');
+                        notification.className = 'notification';
+                        notification.innerHTML = `
+                            <svg class="notification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <div class="notification-content">
+                                <div class="notification-title">Listing Created Successfully!</div>
+                                <ul class="notification-list">
+                                    <li>Your item has been listed</li>
+                                    <li>Item ID: ${data.itemId}</li>
+                                </ul>
+                            </div>
+                        `;
+
+                        document.body.appendChild(notification);
+                        setTimeout(() => {
+                            notification.classList.add('show');
+                            notification.classList.add('show-shake');
+                        }, 10);
+
+                        setTimeout(() => {
+                            notification.classList.remove('show');
+                            setTimeout(() => {
+                                notification.remove();
+                            }, 300);
+                        }, 5000);
+                    } else {
+                        throw new Error(data.message);
+                    }
+                } catch (error) {
+                    console.error('Error creating listing:', error);
+                    alert('Failed to create listing. Please try again.');
+                }
+            }
+        });
+
+        // Add helper function to calculate total tax rate based on price thresholds
+        function calculateTotalTaxRate(price) {
+            if (price >= 5000) return 15;  // Luxury items
+            if (price >= 2500) return 12;  // Premium items  
+            if (price >= 1000) return 10;  // Mid-high range items
+            if (price >= 500) return 8;    // Mid range items
+            return 5;                      // Basic items
+        }
+
+        function calculateTax(price) {
+            const taxContainer = document.getElementById('taxEstimate');
+            const priceNum = parseFloat(price);
+            
+            if (isNaN(priceNum) || priceNum <= 0) {
+                taxContainer.style.display = 'none';
+                return;
+            }
+
+            let taxRate = calculateTotalTaxRate(priceNum);
+            let totalTax = (priceNum * taxRate) / 100;
+            let total = priceNum + totalTax;
+
+            let taxDescription;
+            switch(taxRate) {
+                case 15: taxDescription = "Luxury Tax Rate"; break;
+                case 12: taxDescription = "Premium Tax Rate"; break;
+                case 10: taxDescription = "Standard Plus Tax Rate"; break;
+                case 8: taxDescription = "Standard Tax Rate"; break;
+                default: taxDescription = "Basic Tax Rate";
+            }
+
+            taxContainer.innerHTML = `
+                <div class="tax-row">
+                    <span class="tax-label">${taxDescription} (${taxRate}%)</span>
+                    <span class="tax-value">$${totalTax.toFixed(2)}</span>
+                </div>
+                <div class="tax-row total">
+                    <span class="tax-label">Total with Tax</span>
+                    <span class="tax-value">$${total.toFixed(2)}</span>
+                </div>
+            `;
+            
+            taxContainer.style.display = 'block';
+            taxContainer.classList.add('active');
+        }
+    </script>
+</body>
+</html>

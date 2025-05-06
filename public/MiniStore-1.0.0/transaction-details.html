@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Details</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f5f0;
+        }
+
+        .transaction-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .info-item {
+            margin-bottom: 10px;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .status-accepted {
+            background-color: #e6f4ea;
+            color: #1e7e34;
+        }
+
+        .product-info {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .product-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .price-details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .price-total {
+            border-top: 2px solid #dee2e6;
+            margin-top: 10px;
+            padding-top: 10px;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #0056b3;
+        }
+
+        .header-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .logo-container img {
+            width: 170px;
+            height: auto;
+        }
+
+        .transaction-title {
+            margin: 0;
+            text-align: left;
+        }
+
+        .payment-logo {
+            height: 50px;
+            width: auto;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="transaction-container">
+        <div class="section">
+            <div class="header-section">
+                <div class="logo-container">
+                    <img src="../../images/logo.JPG" alt="Thunder Store">
+                </div>
+                <div>
+                    <h1 class="transaction-title">Transaction Details</h1>
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Transaction ID</div>
+                    <div class="info-value info-transaction-id">#TRX-789456</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Status</div>
+                    <div class="info-value">
+                        <span class="status-badge status-accepted">Accepted</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Date & Time</div>
+                    <div class="info-value info-date">March 20, 2024, 15:30:45</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Amount</div>
+                    <div class="info-value info-amount">REF-456789</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Buyer Information</div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Name</div>
+                    <div class="info-value info-name">John Doe</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">minit</div>
+                    <div class="info-value info-minit">john.doe@example.com</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Phone</div>
+                    <div class="info-value info-phone">+1 234-567-8900</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-product">Product Details</div>
+    
+        </div>
+
+        <div class="section">
+            <div class="section-title">Payment Information</div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Payment Method</div>
+                    <div class="info-value info-Method">
+                        <img src="images/visa.svg" alt="Visa" class="payment-logo">
+
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Payment date</div>
+                    <div class="info-value info-payment-date">Stripe Payments</div>
+                </div>
+            </div>
+            <div class="price-details">
+                <div class="price-row">
+                    <span >Subtotal:</span>
+                    <span class = "sub-total">$249.99</span>
+                </div>
+                <div class="price-row">
+                    <span>Shipping:</span>
+                    <span class = "Shipping">$4.99</span>
+                </div>
+                <div class="price-row">
+                    <span class = "Tax-percent">Tax (10%):</span>
+                    <span class = "Tax">$25.50</span>
+                </div>
+                <div class="price-row price-total">
+                    <span>Total:</span>
+                    <span class = "total">$299.99</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Billing Address</div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Street Address</div>
+                    <div class="info-value info-address">123 Sample Street</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Country</div>
+                    <div class="info-value info-country">United States</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="userProfile.html" class="back-btn">Back to Profile</a>
+    </div>
+    <script src="js/transactionDetails.js"></script>
+</body>
+</html>

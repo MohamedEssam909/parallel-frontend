@@ -1,0 +1,158 @@
+.reports-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.reports-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2c3e50;
+    font-size: 2.5rem;
+}
+
+.reports-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.tab-btn {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border: none;
+    background: #f5f6fa;
+    color: #2c3e50;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background: #000;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.leaderboard {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.leaderboard h2 i {
+    color: #ffd700;
+}
+
+.leaderboard-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.leaderboard-item:hover {
+    transform: translateX(10px);
+    background: #f0f2f5;
+}
+
+.leaderboard-item.top-1 {
+    background: linear-gradient(45deg, #ffd700, #ffc800);
+    color: white;
+}
+
+.leaderboard-item.top-2 {
+    background: linear-gradient(45deg, #c0c0c0, #b3b3b3);
+    color: white;
+}
+
+.leaderboard-item.top-3 {
+    background: linear-gradient(45deg, #cd7f32, #be7023);
+    color: white;
+}
+
+.rank {
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 50px;
+    text-align: center;
+}
+
+.details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.name {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.stat {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: inherit;
+}
+
+.seller-info {
+    flex: 1;
+    text-align: left;
+}
+
+.seller-info .name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+
+.seller-info .email {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+    .reports-tabs {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .leaderboard-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .details {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
