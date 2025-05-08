@@ -15,6 +15,12 @@ async function loadProfile() {
     const profile = await response.json();
     console.log("Profile:", profile);
 
+    if (profile.message === 'Account info not found for this user') {
+      // Redirect to create account page if no account exists
+      window.location.href = 'createAccount.html';
+      return;
+    }
+
     if (profile.message) {
       alert(profile.message);
     } else {
@@ -30,11 +36,11 @@ async function loadProfile() {
       }
       var bal = document.querySelector('#balance');
       if (bal) {
-        bal.textContent = `Balance: $${profile.balance}`;
+        bal.textContent = `  $${profile.balance}`;
       }
       var bank = document.querySelector('#bankName');
       if (bank) {
-        bank.textContent = `Bank: ${profile.bank_name}`;
+        bank.textContent = ` ${profile.bank_name}`;
       }
       var subscription = document.querySelector('#subscriptionType');
       if (subscription) {
@@ -42,23 +48,26 @@ async function loadProfile() {
       }
       var card = document.querySelector('#cardType');
       if (card) {
-        card.textContent = `Card Type: ${profile.card_type}`;
+        card.textContent = ` ${profile.card_type}`;
       }
       var item_num = document.querySelector('#items_number');
       if (item_num) {
-        item_num.textContent = `${profile.item_count} items`;
+        item_num.textContent = ` ${profile.item_count} items`;
       }
       var desc=document.querySelector('#description');
       if(desc){
-        desc.textContent=`${profile.address}`;
+        desc.textContent = profile.address ? profile.address : "New Thunder Seller";
+
       }
-      var avg_days=document.querySelector('#avgDays');
-      if(avg_days){
-        avg_days.textContent=`Average ${profile.average_days_between_purchases} Days Between Purchases`
-      }
+      var avg_days = document.querySelector('#avgDays');
+if (avg_days) {
+  const avg = profile.average_days_between_purchases ?? 0;
+  avg_days.textContent = ` ${avg} Days Between Purchases`;
+}
+
       var coun=document.querySelector('#country');
       if(coun){
-        coun.textContent=`From ${profile.country}`
+        coun.textContent=`${profile.country}`
       }
 
 
@@ -116,5 +125,35 @@ async function loadProfile() {
   }
   finally{
     document.getElementById('loader').style.display = 'none'; // Hide loader
+  }
+}
+
+
+async function addFunds() {
+  const user_id = localStorage.getItem('user_id');
+  const amount = document.getElementById('fundAmount').value;
+  
+  if (!amount || isNaN(amount)) {
+    alert('Please enter a valid amount');
+    return;
+  }
+
+  try {
+    const response = await fetch('https://parallel-backend-production.up.railway.app/deposit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id, amount: parseFloat(amount) })
+    });
+    
+    const result = await response.json();
+    if (result.success) {
+      alert('Funds added successfully!');
+      loadProfile(); // Refresh the profile to show updated balance
+    } else {
+      alert(result.message || 'Error adding funds');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error adding funds');
   }
 }

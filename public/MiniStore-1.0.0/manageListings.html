@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manage Listings | Thunder Store</title>
+  <link rel="stylesheet" href="shoppingPageStyle.css" />
+  <style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f4f4;
+  padding: 40px;
+}
+
+.listing-container {
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.listing {
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  animation: slideUp 0.4s ease forwards;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.listing:nth-child(n) {
+  animation-delay: calc(0.05s * var(--i));
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.listing:last-child {
+  border-bottom: none;
+}
+
+.details {
+  flex: 1;
+}
+
+.details h3 {
+  margin: 0 0 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.edit-btn {
+  background: #2980b9;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #3498db;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #ff4d4d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.save-btn {
+  background: #27ae60;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #2ecc71;
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form {
+  margin-top: 20px;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.edit-form input,
+.edit-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border 0.2s;
+}
+
+.edit-form input:focus,
+.edit-form select:focus {
+  border-color: #3498db;
+  outline: none;
+}
+    
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #778186;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+  </style>
+</head>
+<body>
+  <div id="loader" class="loader-overlay">
+    <div class="spinner"></div>
+  </div>
+  <div class="listing-container">
+    <h1>Manage Your Listings</h1>
+    <div id="itemList"></div>
+  </div>
+
+  <script>
+     document.getElementById('loader').style.display = 'flex';
+    const sellerId = localStorage.getItem('user_id');
+    console.log( sellerId );
+
+    async function loadSellerItems() {
+      const res = await fetch(`https://parallel-backend-production.up.railway.app/items/list?seller_id=${sellerId}`);
+      const items = await res.json();
+      const container = document.getElementById('itemList');
+
+      container.innerHTML = items.map(item => `
+  <div class="listing" data-id="${item.item_id}" style="--i:${items.indexOf(item)}">
+    <div class="details" style="display: flex; gap: 20px;">
+      <img src="${item.image}" alt="${item.name}" style="width: 120px; height: auto; border-radius: 10px; object-fit: cover;" onerror="this.onerror=null;this.src='/images/a1.JPG';"">
+      <div>
+        <h3>${item.name}</h3>
+        <p><strong>Price:</strong> $${item.actual_price}</p>
+        <p><strong>Stock:</strong> ${item.stock_quantity}</p>
+        <p><strong>Category:</strong> ${item.category}</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="edit-btn" onclick="toggleEdit(${item.item_id})">Edit</button>
+      <button class="delete-btn" onclick="deleteItem(${item.item_id})">Delete</button>
+    </div>
+    <form class="edit-form" id="editForm-${item.item_id}" onsubmit="saveChanges(event, ${item.item_id})">
+      <label>Name:</label>
+      <input type="text" name="name" value="${item.name}" required />
+
+      <label>Price ($):</label>
+      <input type="number" name="price" step="0.01" value="${item.actual_price}" required />
+
+      <label>Stock Quantity:</label>
+      <input type="number" name="stock" value="${item.stock_quantity}" required />
+
+      <label>Tax Rate (%):</label>
+      <input type="number" name="tax" value="${item.tax_rate}" required />
+
+      <label>Warranty Period (months):</label>
+      <input type="number" name="warranty" value="${item.warranty_period}" required />
+
+      <label>Discount Price ($):</label>
+      <input type="number" name="discount" value="${item.discount_price ?? 0}" />
+
+      <label>Category:</label>
+      <input type="text" name="category" value="${item.category}" required />
+
+      <button class="save-btn" type="submit">Save</button>
+    </form>
+  </div>
+`).join('');
+
+
+      document.getElementById('loader').style.display = 'none'; // Hide loader
+    }
+
+    function toggleEdit(itemId) {
+      const form = document.getElementById(`editForm-${itemId}`);
+      form.style.display = form.style.display === 'block' ? 'none' : 'block';
+    }
+
+    async function saveChanges(e, itemId) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const payload = {
+        itemName: formData.get('name'),
+        price: parseFloat(formData.get('price')),
+        stockQuantity: parseInt(formData.get('stock')),
+        taxRate: parseFloat(formData.get('tax')),
+        warranty: parseInt(formData.get('warranty')),
+        discount: parseFloat(formData.get('discount')),
+        category: formData.get('category'),
+      };
+
+      const res = await fetch(`https://parallel-backend-production.up.railway.app/items/update/${itemId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.json();
+      if (res.ok) {
+        alert('Item updated!');
+        loadSellerItems();
+      } else {
+        alert(result.message || 'Update failed');
+      }
+    }
+
+    async function deleteItem(itemId) {
+      if (!confirm('Are you sure you want to delete this listing?')) return;
+      const res = await fetch(`https://parallel-backend-production.up.railway.app/items/delete/${itemId}`, {
+        method: 'DELETE'
+      });
+
+      if (res.ok) {
+        alert('Item deleted.');
+        loadSellerItems();
+      } else {
+        alert('Deletion failed.');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadSellerItems);
+  </script>
+</body>
+</html>

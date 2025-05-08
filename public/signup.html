@@ -1,51 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sign Up</title>
-  <link rel="stylesheet" href="style.css">
-  
-</head>
-<body>
-  <div class="background-grid">
-    <img src="MiniStore-1.0.0/images/product-item9.jpg" alt="Product 1">
-    <img src="MiniStore-1.0.0/images/insta-item3.jpg" alt="Product 2">
-    <img src="MiniStore-1.0.0/images/—Pngtree—dropshipping men hole sole jogging_14339669.png" alt="Product 3">
-    <img src="MiniStore-1.0.0/images/product-item10.jpg" alt="Product 4">
-    <img src="MiniStore-1.0.0/images/cart-item2.jpg" alt="Product 5">
-    <img src="MiniStore-1.0.0/images/post-item2.jpg" alt="Product 6">
-    <img src="MiniStore-1.0.0/images/post-item1.jpg" alt="Product 4">
-    <img src="MiniStore-1.0.0/images/pngfind.com-led-tv-images-png-2092148.png" alt="Product 5">
-    <img src="MiniStore-1.0.0/images/product-item9.jpg" alt="Product 6">
-    <img src="MiniStore-1.0.0/images/product-item8.jpg" alt="Product 5">
-    <img src="MiniStore-1.0.0/images/product-item7.jpg" alt="Product 6">
-    <img src="MiniStore-1.0.0/images/cc.JPG" alt="Product 4">
-    <img src="MiniStore-1.0.0/images/product-item5.jpg" alt="Product 5">
-    <img src="MiniStore-1.0.0/images/post-item3.jpg" alt="Product 6">
-    <img src="MiniStore-1.0.0/images/product-item1.jpg" alt="Product 5">
-    <img src="MiniStore-1.0.0/images/post-item8.jpg" alt="Product 6">
-    <img src="MiniStore-1.0.0/images/single-image3.jpg" alt="Product 4">
-    <img src="MiniStore-1.0.0/images/post-small-image1.jpg" alt="Product 5">
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="background-grid">
+      <img src="MiniStore-1.0.0/images/product-item9.jpg" alt="Product 1" />
+      <img src="MiniStore-1.0.0/images/insta-item3.jpg" alt="Product 2" />
+      <img
+        src="MiniStore-1.0.0/images/—Pngtree—dropshipping men hole sole jogging_14339669.png"
+        alt="Product 3"
+      />
+      <img src="MiniStore-1.0.0/images/product-item10.jpg" alt="Product 4" />
+      <img src="MiniStore-1.0.0/images/cart-item2.jpg" alt="Product 5" />
+      <img src="MiniStore-1.0.0/images/post-item2.jpg" alt="Product 6" />
+      <img src="MiniStore-1.0.0/images/post-item1.jpg" alt="Product 4" />
+      <img
+        src="MiniStore-1.0.0/images/pngfind.com-led-tv-images-png-2092148.png"
+        alt="Product 5"
+      />
+      <img src="MiniStore-1.0.0/images/product-item9.jpg" alt="Product 6" />
+      <img src="MiniStore-1.0.0/images/product-item8.jpg" alt="Product 5" />
+      <img src="MiniStore-1.0.0/images/product-item7.jpg" alt="Product 6" />
+      <img src="MiniStore-1.0.0/images/cc.JPG" alt="Product 4" />
+      <img src="MiniStore-1.0.0/images/product-item5.jpg" alt="Product 5" />
+      <img src="MiniStore-1.0.0/images/post-item3.jpg" alt="Product 6" />
+      <img src="MiniStore-1.0.0/images/product-item1.jpg" alt="Product 5" />
+      <img src="MiniStore-1.0.0/images/post-item8.jpg" alt="Product 6" />
+      <img src="MiniStore-1.0.0/images/single-image3.jpg" alt="Product 4" />
+      <img src="MiniStore-1.0.0/images/post-small-image1.jpg" alt="Product 5" />
+    </div>
 
+    <div class="form-box-signup">
+      <h2>Sign Up</h2>
+      <form id="signupForm">
+        <input
+          type="text"
+          id="ssn"
+          placeholder="9-digit SSN"
+          pattern="\d{9}"
+          required
+        />
+        <input type="text" id="fname" placeholder="First Name" required />
+        <input
+          type="text"
+          id="minit"
+          placeholder="Middle Initial"
+          maxlength="1"
+        />
+        <input type="text" id="lname" placeholder="Last Name" required />
+        <input type="text" id="country" placeholder="Country" required />
+        <input
+          type="text"
+          id="phone number"
+          placeholder="Phone Number"
+          pattern="\d{10}"
+          required
+        />
 
-  <div class="form-box-signup">
-    <h2>Sign Up</h2>
-    <form id="signupForm">
-      <input type="text" id="ssn" placeholder="9-digit SSN" pattern="\d{9}" required>
-      <input type="text" id="fname" placeholder="First Name" required>
-      <input type="text" id="lname" placeholder="Last Name" required>
-      <input type="text" id="country" placeholder="Country" required>
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button type="submit" class="btn">Sign Up</button>
-    </form>
-    <p id="signup-message"></p>
-    <a href="login.html">Already have an account? Login</a>
-  </div>
+        <select id="gender" required>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
 
+        <label for="date_birth">Date of Birth:</label>
+        <input type="date" id="date_birth" name="date_birth" required />
 
-</body>
-<script src="signup.js"></script>
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit" class="btn">Sign Up</button>
+      </form>
+      <p id="signup-message"></p>
+      <a href="login.html">Already have an account? Login</a>
+    </div>
+  </body>
+  <script src="signup.js"></script>
 </html>

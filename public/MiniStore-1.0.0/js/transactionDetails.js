@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', async function () {
   const urlParams = new URLSearchParams(window.location.search);
   const transactionId = urlParams.get('id');
@@ -16,12 +17,14 @@ document.addEventListener('DOMContentLoaded', async function () {
       
       let matchedorder;
       const txMinute = toMinuteString(transaction.transaction_date);
+      
       orderlist.forEach(order => {
         const orderMinute = toMinuteString(order.order_time); 
         if (txMinute === orderMinute) {
             matchedorder = order;
             }
         });
+
       //console.log(matchedorder)
       const response4 = await fetch(`https://parallel-backend-production.up.railway.app/orderContents/?order_id=${matchedorder.order_id}`);
       const ordercontents = await response4.json();
@@ -56,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       const paymentInfo = await response5.json();
       
       
-      console.log(buyerInfo)
+      //console.log(buyerInfo)
     
       if (paymentInfo) {
 
@@ -99,7 +102,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   } else {
     document.querySelector('.transaction-details').innerHTML = '<p>No transaction ID provided.</p>';
   }
-});
+  
+  document.getElementById("loader").style.display = "none";
+})
 
 
 function toMinuteString(date) {

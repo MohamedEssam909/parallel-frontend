@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact - ThunderStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.contact-container {
+  display: flex;
+  width: 100%;
+  animation: fadeIn 1.5s ease;
+}
+
+.sidebar {
+  background: #111;
+  padding: 40px 30px;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideInLeft 1s ease;
+}
+
+.sidebar h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.sidebar p {
+  font-size: 0.95em;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.contact-info p {
+  margin-top: 20px;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.socials {
+  margin-top: 30px;
+}
+
+.socials a {
+  color: #fff;
+  margin-right: 15px;
+  font-size: 1.2em;
+  transition: transform 0.3s;
+}
+
+.socials a:hover {
+  transform: scale(1.2);
+  color: #aaa;
+}
+
+.form-wrapper {
+  background: linear-gradient(to bottom right, #222, #111);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  animation: slideInRight 1s ease;
+}
+
+.contact-form {
+  width: 100%;
+  max-width: 500px;
+}
+
+.contact-form h1 {
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 12px 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  font-size: 1em;
+  transition: 0.3s;
+  resize: none;
+}
+
+.input-group label {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  font-size: 0.9em;
+  color: #aaa;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label,
+.input-group textarea:focus + label,
+.input-group textarea:valid + label {
+  top: -10px;
+  font-size: 0.75em;
+  color: #eee;
+}
+
+.contact-form button {
+  padding: 12px 25px;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #ddd;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; } 
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; } 
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; } 
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar, .form-wrapper {
+    width: 100%;
+    padding: 30px;
+  }
+}
+.about-section .about-content {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.about-section h1 {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.about-section p {
+  color: #ccc;
+  font-size: 1.1em;
+  margin-bottom: 40px;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.feature-box {
+  background: #1a1a1a;
+  padding: 25px;
+  border-radius: 12px;
+  width: 250px;
+  color: #eee;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+.feature-box i {
+  font-size: 2em;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.feature-box h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+
+  </style>
+</head>
+<body>
+  <div class="contact-container">
+    <div class="sidebar">
+      <h2>ThunderStore</h2>
+      <p>Reach out to us with any questions or feedback.</p>
+      <div class="contact-info">
+        <p><i class="fas fa-map-marker-alt"></i> 123 Storm Ave, Cloud City</p>
+        <p><i class="fas fa-phone-alt"></i> +1 (555) 123-4567</p>
+        <p><i class="fas fa-envelope"></i> support@thunderstore.com</p>
+      </div>
+      <div class="socials">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-discord"></i></a>
+      </div>
+    </div>
+
+    <div class="form-wrapper about-section">
+      <div class="about-content">
+        <h1>About ThunderStore</h1>
+        <p>Your trusted marketplace for high-quality and storm-strong digital goods.</p>
+    
+        <div class="features">
+          <div class="feature-box">
+            <i class="fas fa-bolt"></i>
+            <h3>Fast & Secure</h3>
+            <p>Experience lightning-speed transactions backed with secure protocols.</p>
+          </div>
+          <div class="feature-box">
+            <i class="fas fa-users"></i>
+            <h3>Community Driven</h3>
+            <p>Powered by a vibrant, passionate community of creators and buyers.</p>
+          </div>
+          <div class="feature-box">
+            <i class="fas fa-sync-alt"></i>
+            <h3>Always Evolving</h3>
+            <p>We adapt, update, and improve constantly to meet your needs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>

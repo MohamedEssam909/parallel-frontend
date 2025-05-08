@@ -8,8 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="styles/reports.css">
+    
 </head>
 <body>
+
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+      </div>
+
     <div class="container">
         <div class="navbar">
             <div class="logo">
@@ -72,7 +78,8 @@
         // Fetch top sellers data
         async function fetchTopSellers() {
             try {
-                const response = await fetch('http://localhost:3000/reports/top-sellers');
+                document.getElementById('loader').style.display = 'flex';
+                const response = await fetch('https://parallel-backend-production.up.railway.app/reports/top-sellers');
                 const sellers = await response.json();
                 
                 const content = document.querySelector('#sellers .leaderboard-content');
@@ -84,7 +91,7 @@
                                 <div class="name">${seller.store_name}</div>
                                 <div class="email">${seller.business_email}</div>
                             </div>
-                            <div class="stat">$${seller.total_earnings.toFixed(2)}</div>
+                            <div class="stat">$${seller.total_earnings}</div>
                         </div>
                     </div>
                 `).join('');
@@ -96,7 +103,7 @@
         // Fetch most reviewed items
         async function fetchTopItems() {
             try {
-                const response = await fetch('http://localhost:3000/reports/most-reviewed');
+                const response = await fetch('https://parallel-backend-production.up.railway.app/reports/most-reviewed');
                 const items = await response.json();
                 
                 const content = document.querySelector('#items .leaderboard-content');
@@ -112,6 +119,9 @@
             } catch (error) {
                 console.error('Error fetching top items:', error);
             }
+            finally{
+            document.getElementById('loader').style.display = 'none'; // Hide loader
+  }
         }
 
         // Load data when page loads

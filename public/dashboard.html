@@ -1,168 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thunder Store - Dashboard</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thunder Store - Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+      body {
+        font-family: "Poppins", "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #eeeeee, #cccccc);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url("background-pattern.png");
+        background-size: cover;
+        background-position: center;
+      }
 
-body {
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #eeeeee, #cccccc);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url('background-pattern.png'); 
-  background-size: cover;
-  background-position: center;
-}
+      /* Card / Container */
+      .form-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 470px;
+        width: 90%;
+      }
 
-/* Card / Container */
-.form-container {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  max-width: 470px;
-  width: 90%;
-}
+      /* Headings */
+      h2 {
+        font-size: 32px;
+        color: #222;
+        margin-bottom: 20px;
+      }
 
-/* Headings */
-h2 {
-  font-size: 32px;
-  color: #222;
-  margin-bottom: 20px;
-}
+      p {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 20px;
+      }
 
-p {
-  font-size: 18px;
-  color: #555;
-  margin-bottom: 20px;
-}
+      /* Form Inputs */
+      form input[type="text"],
+      form input[type="password"] {
+        width: 100%;
+        padding: 12px 15px;
+        margin: 10px 0;
+        border: 1px solid #bbb;
+        border-radius: 8px;
+        background: #f9f9f9;
+        font-size: 16px;
+      }
 
-/* Form Inputs */
-form input[type="text"],
-form input[type="password"] {
-  width: 100%;
-  padding: 12px 15px;
-  margin: 10px 0;
-  border: 1px solid #bbb;
-  border-radius: 8px;
-  background: #f9f9f9;
-  font-size: 16px;
-}
+      /* Buttons */
+      .btn,
+      form button {
+        display: inline-block;
+        width: 70%;
+        margin-top: 15px;
+        padding: 12px 25px;
+        background: black;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
 
-/* Buttons */
-.btn, form button {
-  display: inline-block;
-  width: 70%;
-  margin-top: 15px;
-  padding: 12px 25px;
-  background: black;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
+      .btn:hover,
+      form button:hover {
+        background: grey;
+      }
 
-.btn:hover, form button:hover {
-  background: grey;
-}
+      /* Extra elements */
+      a {
+        color: #333;
+        text-decoration: none;
+        display: block;
+        margin-top: 15px;
+        font-size: 15px;
+        transition: color 0.3s;
+      }
 
-/* Extra elements */
-a {
-  color: #333;
-  text-decoration: none;
-  display: block;
-  margin-top: 15px;
-  font-size: 15px;
-  transition: color 0.3s;
-}
+      a:hover {
+        color: black;
+      }
 
-a:hover {
-  color: black;
-}
+      /* Background pattern idea (optional) */
+      body::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://www.transparenttextures.com/patterns/concrete-wall.png"); /* a subtle grey texture */
+        opacity: 0.05;
+        z-index: -1;
+      }
 
-/* Background pattern idea (optional) */
-body::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png'); /* a subtle grey texture */
-  opacity: 0.05;
-  z-index: -1;
-}
+      .background-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 5fr));
+        grid-gap: 10px;
+        padding: 15px;
+        opacity: 0.65;
+        filter: blur(1px);
+        z-index: -2;
+      }
 
-.background-grid {
-  position: absolute;
-  top: 0; left: 0; bottom:0;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 5fr));
-  grid-gap: 10px;
-  padding: 15px;
-  opacity: 0.65;
-  filter: blur(1px);
-  z-index: -2;
-}
+      .background-grid img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-grid">
+      <img src="MiniStore-1.0.0/images/product-item9.jpg" alt="Product 1" />
+      <img src="MiniStore-1.0.0/images/insta-item3.jpg" alt="Product 2" />
+      <img
+        src="MiniStore-1.0.0/images/—Pngtree—dropshipping men hole sole jogging_14339669.png"
+        alt="Product 3"
+      />
+      <img src="MiniStore-1.0.0/images/product-item10.jpg" alt="Product 4" />
+      <img src="MiniStore-1.0.0/images/cart-item2.jpg" alt="Product 5" />
+      <img src="MiniStore-1.0.0/images/post-item2.jpg" alt="Product 6" />
+      <img src="MiniStore-1.0.0/images/post-item1.jpg" alt="Product 4" />
+      <img
+        src="MiniStore-1.0.0/images/pngfind.com-led-tv-images-png-2092148.png"
+        alt="Product 5"
+      />
+      <img src="MiniStore-1.0.0/images/product-item9.jpg" alt="Product 6" />
+      <img src="MiniStore-1.0.0/images/product-item8.jpg" alt="Product 5" />
+      <img src="MiniStore-1.0.0/images/product-item7.jpg" alt="Product 6" />
+      <img src="MiniStore-1.0.0/images/cc.JPG" alt="Product 4" />
+      <img src="MiniStore-1.0.0/images/product-item5.jpg" alt="Product 5" />
+      <img src="MiniStore-1.0.0/images/post-item3.jpg" alt="Product 6" />
+      <img src="MiniStore-1.0.0/images/product-item1.jpg" alt="Product 5" />
+      <img src="MiniStore-1.0.0/images/post-item8.jpg" alt="Product 6" />
+      <img src="MiniStore-1.0.0/images/single-image3.jpg" alt="Product 4" />
+      <img src="MiniStore-1.0.0/images/post-small-image1.jpg" alt="Product 5" />
+    </div>
 
-.background-grid img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 30px;
+    <div class="form-container">
+      <h2>Welcome to Thunder Store</h2>
+      <p>You have successfully logged in.</p>
+      <a href="index.html" class="btn">Logout</a>
+      <a href="MiniStore-1.0.0/index.html" class="btn">Start Shopping</a>
+      <a href="createAccount.html" class="btn" id="createAccountLink"
+        >Complete Your Account</a
+      >
+    </div>
 
-}
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const user_id = localStorage.getItem("user_id");
+        if (!user_id) {
+          window.location.href = "login.html";
+        }
 
-
-
-  </style>
-</head>
-<body>
-
-  <div class="background-grid">
-    <img src="MiniStore-1.0.0/images/product-item9.jpg" alt="Product 1">
-    <img src="MiniStore-1.0.0/images/insta-item3.jpg" alt="Product 2">
-    <img src="MiniStore-1.0.0/images/—Pngtree—dropshipping men hole sole jogging_14339669.png" alt="Product 3">
-    <img src="MiniStore-1.0.0/images/product-item10.jpg" alt="Product 4">
-    <img src="MiniStore-1.0.0/images/cart-item2.jpg" alt="Product 5">
-    <img src="MiniStore-1.0.0/images/post-item2.jpg" alt="Product 6">
-    <img src="MiniStore-1.0.0/images/post-item1.jpg" alt="Product 4">
-    <img src="MiniStore-1.0.0/images/pngfind.com-led-tv-images-png-2092148.png" alt="Product 5">
-    <img src="MiniStore-1.0.0/images/product-item9.jpg" alt="Product 6">
-    <img src="MiniStore-1.0.0/images/product-item8.jpg" alt="Product 5">
-    <img src="MiniStore-1.0.0/images/product-item7.jpg" alt="Product 6">
-    <img src="MiniStore-1.0.0/images/cc.JPG" alt="Product 4">
-    <img src="MiniStore-1.0.0/images/product-item5.jpg" alt="Product 5">
-    <img src="MiniStore-1.0.0/images/post-item3.jpg" alt="Product 6">
-    <img src="MiniStore-1.0.0/images/product-item1.jpg" alt="Product 5">
-    <img src="MiniStore-1.0.0/images/post-item8.jpg" alt="Product 6">
-    <img src="MiniStore-1.0.0/images/single-image3.jpg" alt="Product 4">
-    <img src="MiniStore-1.0.0/images/post-small-image1.jpg" alt="Product 5">
-  </div>
-
-  <div class="form-container">
-    <h2> Welcome to Thunder Store</h2>
-    <p>You have successfully logged in.</p>
-    <a href="index.html" class="btn">Logout</a>
-    <a href="MiniStore-1.0.0/index.html" class="btn">Start Shopping</a>
-  </div>
-
-</body>
+        // Check if account exists and hide/show the link accordingly
+        fetch(`https://parallel-backend-production.up.railway.app/profileInfo?user_id=${user_id}`)
+          .then((response) => response.json())
+          .then((profile) => {
+            if (profile.bank_name) {
+              // Account exists, hide the link
+              document.getElementById("createAccountLink").style.display =
+                "none";
+            }
+          });
+      });
+    </script>
+  </body>
 </html>

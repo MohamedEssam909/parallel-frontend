@@ -331,7 +331,7 @@
         // Populate categories - Replace hardcoded array with dynamic fetch
         async function loadCategories() {
             try {
-                const response = await fetch('http://localhost:3000/categories/list');
+                const response = await fetch('https://parallel-backend-production.up.railway.app/categories/list');
                 const categories = await response.json();
                 const categorySelect = document.getElementById('category');
                 categorySelect.innerHTML = '<option value="">Select a category</option>' +
@@ -494,7 +494,7 @@
                         sellerId: sellerId
                     };
 
-                    const response = await fetch('http://localhost:3000/items/create', {
+                    const response = await fetch('https://parallel-backend-production.up.railway.app/items/create', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

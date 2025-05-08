@@ -21,7 +21,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     document.getElementById("message").textContent = data.message;
     if (data.message.includes("successful")) {
       
-      window.location.href = "public/dashboard.html";
+      window.location.href = "dashboard.html";
     } else {
      
       document.getElementById("message").textContent = data.message;

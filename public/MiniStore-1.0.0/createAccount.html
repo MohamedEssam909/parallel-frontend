@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Complete Your Account Setup</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .account-container {
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #222223;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #555;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+      }
+      .image-upload {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+      }
+      #profilePreview {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 3px solid #222223;
+      }
+      .btn {
+        background-color: #222223;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        transition: background-color 0.3s;
+      }
+      .btn:hover {
+        background-color: #222223;
+      }
+      .card-row {
+        display: flex;
+        gap: 15px;
+      }
+      .card-row .form-group {
+        flex: 1;
+      }
+      .expiry-row {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      .expiry-row select {
+        flex: 1;
+      }
+      .passcode-input {
+        letter-spacing: 3px;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="account-container">
+      <h1>Complete Your Account</h1>
+
+      <div class="form-group">
+        <label for="bankName">Bank Name</label>
+        <input type="text" id="bankName" required />
+      </div>
+
+      <div class="card-row">
+        <div class="form-group">
+          <label for="cardNum">Card Number</label>
+          <input
+            type="text"
+            id="cardNum"
+            placeholder="1234 5678 9012 3456"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="cardType">Card Type</label>
+          <select id="cardType" required>
+            <option value="Visa">Visa</option>
+            <option value="MasterCard">MasterCard</option>
+            <option value="American Express">American Express</option>
+            <option value="Discover">Discover</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card-row">
+        <div class="form-group">
+          <label for="passcode">Passcode</label>
+          <input
+            type="password"
+            id="passcode"
+            class="passcode-input"
+            maxlength="4"
+            pattern="\d{4}"
+            title="4-digit passcode"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Expiry Date</label>
+          <div class="expiry-row">
+            <select id="expiryMonth" required>
+              <option value="">Month</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+            <span>/</span>
+            <select id="expiryYear" required>
+              <option value="">Year</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+              <option value="2030">2030</option>
+              <option value="2031">2031</option>
+              <option value="2032">2032</option>
+              <option value="2033">2033</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="subscriptionType">Subscription Plan</label>
+        <select id="subscriptionType">
+          <option value="Basic">Basic (Free)</option>
+          <option value="Premium">Premium ($9.99/month)</option>
+          <option value="Business">Business ($19.99/month)</option>
+        </select>
+      </div>
+
+      <div class="image-upload">
+        <label>Profile Picture</label>
+        <img
+          id="profilePreview"
+          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          alt="Profile Preview"
+        />
+        <input type="file" id="profileImage" accept="image/*" />
+      </div>
+
+      <button class="btn" id="createAccountBtn">Complete Account Setup</button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const user_id = localStorage.getItem("user_id");
+        if (!user_id) {
+          alert("Please login first");
+          window.location.href = "login.html";
+          return;
+        }
+
+        // Auto-format card number
+        document
+          .getElementById("cardNum")
+          .addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\s+/g, "");
+            if (value.length > 0) {
+              value = value.match(new RegExp(".{1,4}", "g")).join(" ");
+            }
+            e.target.value = value;
+          });
+
+        // Image preview
+        document
+          .getElementById("profileImage")
+          .addEventListener("change", function (e) {
+            const file = e.target.files[0];
+            if (file) {
+              const reader = new FileReader();
+              reader.onload = function (event) {
+                document.getElementById("profilePreview").src =
+                  event.target.result;
+              };
+              reader.readAsDataURL(file);
+            }
+          });
+
+        // Create account button
+        document
+          .getElementById("createAccountBtn")
+          .addEventListener("click", async function () {
+            const bankName = document.getElementById("bankName").value;
+            const cardNum = document.getElementById("cardNum").value;
+            const cardType = document.getElementById("cardType").value;
+            const passcode = document.getElementById("passcode").value;
+            const subscriptionType =
+              document.getElementById("subscriptionType").value;
+            const expiryMonth = document.getElementById("expiryMonth").value;
+            const expiryYear = document.getElementById("expiryYear").value;
+            const profileImage =
+              document.getElementById("profileImage").files[0];
+
+            // Validate all fields
+            if (
+              !bankName ||
+              !cardNum ||
+              !cardType ||
+              !passcode ||
+              !expiryMonth ||
+              !expiryYear
+            ) {
+              alert("Please fill in all required fields");
+              return;
+            }
+
+            // Validate passcode
+            if (!/^\d{4}$/.test(passcode)) {
+              alert("Passcode must be 4 digits");
+              return;
+            }
+
+            // Prepare form data
+            const formData = new FormData();
+            formData.append("person_id", user_id);
+            formData.append("bank_name", bankName);
+            formData.append("card_num", cardNum);
+            formData.append("card_type", cardType);
+            formData.append("passcode", passcode);
+            formData.append("subscription_type", subscriptionType);
+            formData.append("expiry_month", expiryMonth);
+            formData.append("expiry_year", expiryYear);
+            if (profileImage) {
+              formData.append("profile_picture", profileImage);
+            }
+
+            try {
+              const response = await fetch("https://parallel-backend-production.up.railway.app/createAccount", {
+                method: "POST",
+                body: formData,
+              });
+
+              const result = await response.json();
+
+              if (result.success) {
+                alert("Account created successfully!");
+                window.location.href = "userProfile.html";
+              } else {
+                alert(result.message || "Error creating account");
+              }
+            } catch (error) {
+              console.error("Error:", error);
+              alert("Error creating account");
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
