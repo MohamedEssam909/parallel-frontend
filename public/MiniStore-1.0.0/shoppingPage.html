@@ -559,8 +559,9 @@
                     </div>
                     <div class="product-info">
                         <h4>${product.item_name}</h4>
+                        <p class="store-name" style="font-size: 0.85em; color: #555;">${product.store_name || 'Unknown Store'}</p>
                         <div class="rating">
-                            ${getStarRating(product.item_rating)}
+                           ${product.item_rating ? getStarRating(product.item_rating) : '<span style="font-size: 0.85em; color: #999;">No ratings yet</span>'}
                         </div>
                         <div class="price-container">
                             <p class="current-price">$${product.discount_price || product.actual_price}</p>
