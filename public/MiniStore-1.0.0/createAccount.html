@@ -288,6 +288,7 @@
               });
 
               const result = await response.json();
+              localStorage.setItem('cart',JSON.stringify([]))
 
               if (result.success) {
                 alert("Account created successfully!");
