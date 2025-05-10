@@ -696,7 +696,6 @@ h3.cart-title {
 .product-store .product-card .cart-concern {
     bottom: 75px;
     width: 100%;
-    height: 30px;
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -717,11 +716,38 @@ h3.cart-title {
 .product-card .card-detail span {
     font-size: 1.5em;
 }
+.product-store .product-card {
+   width: 100%;   
+    width: 320px; /* or any consistent width */
+    max-height: 500px; /* set a fixed or min height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
 
+}
+.product-card img {
+    width: 100%; 
+    height: 300px; 
+    object-fit: cover;
+    display: block;
+}
+.swiper-slide {
+  padding: 0px 80px; /* space around each card */
+  box-sizing: border-box;
+}
 @media only screen and (max-width: 575px) {
   .product-store .product-card .card-detail {
       padding: 10px;
   }
+}
+.card-detail {
+    margin-top: auto; /* push to bottom */
+    padding-left: 30px;
+    padding-bottom: 15px; /* optional */
+}
+section {
+  margin-bottom: 50px; /* space between category blocks */
 }
 
 /*------------Swiper Pagination -----------*/
