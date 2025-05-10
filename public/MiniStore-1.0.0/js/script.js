@@ -165,7 +165,7 @@ fetch('https://parallel-backend-production.up.railway.app/items')
                             </div>
                           </div>
                           <div class="card-detail pt-3">
-                            <h3 class="card-title text-uppercase"><a href="#">${item.name}</a></h3>
+                            <h3 class="card-title text-uppercase"><a href="#">${item.name.length > 30 ? item.name.substring(0, 30) + '...' : item.name}</a></h3>
                             <span class="item-price text-primary d-block">$${item.actual_price}</span>
                             <span class="item-price text-primary d-block">Rated: ${item.rating ? item.rating : "No Rating"}</span>
                           </div>
