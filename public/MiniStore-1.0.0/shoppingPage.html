@@ -558,7 +558,8 @@
                         <img src="${product.image}" alt="${product.item_name}" onerror="this.onerror=null;this.src='/images/a1.JPG';">
                     </div>
                     <div class="product-info">
-                        <h4>${product.item_name}</h4>
+                        <h4>${product.item_name.length > 40 ? product.item_name.substring(0, 30) + '...' : product.item_name}</h4>
+                        
                         <p class="store-name" style="font-size: 0.85em; color: #555;">${product.seller.store_name || 'Unknown Store'}</p>
                         <div class="rating">
                            ${product.item_rating ? getStarRating(product.item_rating) : '<span style="font-size: 0.85em; color: #999;">No ratings yet</span>'}
